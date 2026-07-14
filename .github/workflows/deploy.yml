@@ -3,6 +3,9 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [main]
+  # Disparado pelos repositórios de conteúdo (labs) a cada push de notas
+  repository_dispatch:
+    types: [content-update]
   workflow_dispatch:
 
 permissions:
@@ -29,6 +32,9 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
+
+      - name: Fetch labs content
+        run: node scripts/fetch-content.mjs
 
       - name: Build site
         run: npm run build
