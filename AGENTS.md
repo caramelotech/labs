@@ -2,114 +2,73 @@
 
 ## Sobre o Projeto
 
-**Caramelo Labs** é um laboratório prático de tecnologia focado em aprendizado hands-on. O projeto usa **Astro** + **Starlight** para gerar um site de documentação publicado via GitHub Pages.
+**Caramelo Labs** é o repositório **hub** dos labs da Caramelo Tech. Ele contém a estrutura do site (Astro + Starlight) e busca, em tempo de build, as notas dos repositórios de conteúdo (ai-labs, java-labs, web-dev-labs, etc.). O site é publicado via GitHub Pages em `https://caramelotech.com.br/labs`.
+
+Os repositórios de conteúdo têm apenas Markdown puro em `notes/` - sem frontmatter, sem dependências. Este repositório injeta o frontmatter exigido pelo Starlight durante o fetch.
 
 Estrutura:
 
-- `src/content/docs/` - Anotações teóricas (publicadas no site)
-- `examples/` - Exercícios e projetos práticos
-- `src/styles/custom.css` - Customizações visuais
+- `labs.config.json` - registro dos labs (slug, label, repo, branch, notesDir)
+- `scripts/fetch-content.mjs` - busca notas, injeta frontmatter e gera a sidebar
+- `labs-sidebar.generated.json` - sidebar gerada pelo fetch (ignorada pelo git)
+- `src/content/docs/` - apenas `index.mdx` e `404.md` são versionados; o resto é buscado
+- `src/styles/custom.css` - customizações visuais
 
 ## Comandos Essenciais
 
 ```bash
-npm run dev       # Servidor local em localhost:4321 (hot reload)
-npm run build     # Build para produção
-npm run preview   # Preview do build gerado
-npm install       # Instalar dependências
+npm install          # instalar dependências
+npm run fetch        # clonar labs do GitHub e montar o conteúdo
+npm run fetch:local  # copiar de clones locais irmãos (../<slug>)
+npm run dev          # servidor local em localhost:4321 (rode um fetch antes)
+npm run build        # build para produção
+npm run preview      # preview do build gerado
 ```
 
-## Convenções de Documentação
+## Regras Importantes
 
-### Frontmatter Obrigatório
+- **Notas não são editadas aqui.** O conteúdo em `src/content/docs/<lab>/` é gerado pelo fetch e sobrescrito a cada execução. Para alterar notas, edite o repositório de conteúdo do lab correspondente.
+- Somente `src/content/docs/index.mdx` e `src/content/docs/404.md` pertencem a este repositório.
+- A sidebar não é editada em `astro.config.mjs` - ela vem de `labs.config.json` (ordem dos labs) e do `sidebar.json` de cada repositório de conteúdo (seções internas).
+- O `base: "/labs"` em `astro.config.mjs` não pode mudar (corresponde ao sub-path do GitHub Pages).
 
-Todos os arquivos em `src/content/docs/` precisam deste frontmatter (nesta ordem):
+## Tarefas Comuns
 
-```yaml
----
-title: "Título da nota"
-description: "Descrição breve (50-100 chars recomendado)"
-lastUpdated: YYYY-MM-DD
-sidebar:
-  order: N # Número inteiro para controlar ordem na sidebar
-tags: ["tag1", "tag2"] # Opcional
----
+### Adicionar um novo lab
+
+1. Adicionar entrada em `labs.config.json`:
+   ```json
+   {
+     "slug": "novo-lab",
+     "label": "Novo Lab",
+     "repo": "caramelotech/novo-lab",
+     "branch": "main",
+     "notesDir": "notes"
+   }
+   ```
+2. Opcional: adicionar `LinkCard` do lab em `src/content/docs/index.mdx`
+3. O repositório de conteúdo precisa ter `notes/` e, opcionalmente, `sidebar.json` e o workflow `notify-hub.yml` (ver README)
+
+### Testar o site com conteúdo real
+
+```bash
+npm run fetch        # ou fetch:local, se houver clones irmãos
+npm run build
 ```
 
-**Validação**: Falta de `title`, `description` ou `sidebar.order` quebra o build. Use `npm run dev` para validar.
+O build falha se alguma nota gerar frontmatter inválido - a mensagem de erro do Astro indica o arquivo.
 
-### Naming
+## Convenções de conteúdo (valem para os repositórios de conteúdo)
 
-- **Prefix numérico**: `01-introducao.md`, `02-conceitos-basicos.md` (controla ordem)
-- **Formato**: `NN-nome-descritivo.md` (kebab-case)
-- **Extensões**: `.md` para Markdown, `.mdx` para MDX (com componentes React)
+- Notas em português (pt-BR), Markdown puro
+- Primeira linha de cada nota: `# Título da Nota` (vira o `title` no site e é removida do corpo)
+- Prefixo numérico controla ordem dentro da pasta: `01-`, `02-`, ...
+- Imagens junto das notas, referenciadas com caminho relativo em sintaxe Markdown: `![alt](./assets/img.png)`
+- Links entre notas usam o caminho completo do site: `/labs/<lab>/<secao>/<nota>/`
+- Usar hífens (-) em vez de travessões (—)
+- NÃO usar `---` para separar seções (apenas para notas/atribuições no final do arquivo)
 
-### Estrutura de Conteúdo
+## Git
 
-Organize com headings h2 (#) e h3 (##):
-
-```markdown
-# Título (h1 - apenas um por arquivo)
-
-## Seção principal
-
-### Subseção
-```
-
-## Tipos de Arquivo
-
-| Tipo       | Local                   | Formato                 | Propósito                  |
-| ---------- | ----------------------- | ----------------------- | -------------------------- |
-| Anotações  | `src/content/docs/`     | `.md` com frontmatter   | Conteúdo teórico publicado |
-| Index/Home | `src/content/docs/`     | `index.mdx`             | Página de entrada do site  |
-| Exercícios | `examples/exercises.md` | Markdown com enunciados | Desafios práticos          |
-| Projetos   | `examples/projects.md`  | Markdown descritivo     | Projetos maiores           |
-
-## Padrões e Boas Práticas
-
-### Adicionar Nova Anotação
-
-1. Criar `src/content/docs/NN-nome.md` com frontmatter completo
-2. **Incrementar `order`** corretamente (se inserir no meio, reordenar seguintes)
-3. Usar h2 para seções principais, h3 para subseções
-4. Linkar para `examples/exercises.md` ou `examples/projects.md` quando relevante
-5. Rodar `npm run dev` para validar antes de commitar
-
-### Links Internos
-
-Use paths relativos ou `href` completo:
-
-```markdown
-[Exercícios](../../../examples/exercises.md)
-[Voltar para docs](../01-introducao.md)
-```
-
-### Sincronização de Conteúdo
-
-- Cada anotação em `docs/` pode ter exercícios relacionados em `examples/exercises.md`
-- Projetos devem referenciar ou estender conceitos aprendidos nas anotações
-- Manter consistência de termos e nomenclatura entre arquivos
-
-## Pitfalls Comuns
-
-⚠️ **Metadados incompletos**: Qualquer `title`, `description` ou `order` faltando quebra o build  
-⚠️ **Ordem duplicada**: Múltiplos arquivos com mesmo `order` causam comportamento impredizível  
-⚠️ **Reorganização sem reordenar**: Adicionar novo arquivo no meio sem ajustar `order` dos seguintes  
-⚠️ **Cache stale**: Modificações em `astro.config.mjs` ou novo arquivo podem exigir `Ctrl+C` + `npm run dev` novamente  
-⚠️ **Links quebrados**: Mover/renomear arquivo sem atualizar links em outros documentos
-
-## Arquitetura
-
-**Loader de Conteúdo**: Astro lê automaticamente `src/content/docs/` e valida contra schema em `src/content/config.ts`
-
-**Tema Starlight**: Gera navigation, sidebar, search e styling baseado em frontmatter e estrutura de arquivos
-
-**Deploymentе**: GitHub Actions publica build em `https://caramelotech.com.br/caramelo-labs` (branch `gh-pages`)
-
-## Próximas Customizações Sugeridas
-
-- [ ] **Skill para validação de frontmatter**: Verificar campos obrigatórios antes de adicionar novo conteúdo
-- [ ] **Skill para atualizar `order`**: Automatizar reordenação ao inserir novo arquivo
-- [ ] **Instruções para exercícios**: Padrão para enunciados estruturados e critérios de sucesso
-
-Para sugestões ou mudanças neste guia, abra uma issue ou faça um PR.
+- **NUNCA** fazer `git commit` ou `git push` automaticamente
+- Apenas executar comandos git quando explicitamente solicitado pelo usuário

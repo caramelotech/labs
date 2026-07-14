@@ -1,14 +1,20 @@
 # Guia de Contribuição
 
-Obrigado por querer contribuir com este repositório da Caramelo Tech!
+Obrigado por querer contribuir com o Caramelo Labs!
 
-## O que pode ser contribuído
+## Antes de tudo: onde fica o quê
 
-- Novas anotações em `src/content/docs/`
-- Novos exemplos em `examples/`
-- Exercícios adicionais em `examples/exercises.md`
-- Projetos práticos em `examples/projects.md`
-- Melhorias na configuração do site (Astro/Starlight)
+Este é o repositório **hub** - ele contém apenas a estrutura do site (Astro/Starlight, script de fetch, deploy). **As notas ficam nos repositórios de conteúdo de cada lab** (ex: [ai-labs](https://github.com/caramelotech/ai-labs)).
+
+- Quer melhorar ou adicionar **notas**? Contribua no repositório do lab correspondente.
+- Quer melhorar o **site** (estilos, sidebar, script de fetch, deploy)? Contribua aqui.
+
+## O que pode ser contribuído aqui
+
+- Melhorias no script de fetch (`scripts/fetch-content.mjs`)
+- Registro de novos labs em `labs.config.json`
+- Melhorias visuais (`src/styles/custom.css`) e na página inicial (`src/content/docs/index.mdx`)
+- Melhorias no workflow de deploy (`.github/workflows/deploy.yml`)
 
 ## Processo
 
@@ -23,9 +29,9 @@ Obrigado por querer contribuir com este repositório da Caramelo Tech!
 2. Faça commits atômicos com mensagens no padrão de Conventional Commits:
 
    ```
-   feat: adicionar notas sobre loops
-   fix: corrigir exemplo de recursão
-   docs: melhorar anotação sobre funções
+   feat: adicionar java-labs ao registro de labs
+   fix: corrigir injeção de frontmatter em arquivos .mdx
+   docs: melhorar instruções de novo lab no README
    ```
 
    Tipos válidos: `feat`, `fix`, `docs`, `style`, `refactor`, `chore`
@@ -34,63 +40,18 @@ Obrigado por querer contribuir com este repositório da Caramelo Tech!
 
 4. Após aprovação, o merge será feito por um mantenedor.
 
-## Padrões de conteúdo
-
-### Anotações (`src/content/docs/`)
-
-Cada arquivo `.md` deve ter o seguinte frontmatter:
-
-```yaml
----
-title: "Título da nota"
-description: "Descrição breve exibida no site e no SEO"
-lastUpdated: 2026-01-01
-sidebar:
-  order: 1 # controla a ordem no sidebar
-tags: ["tag1", "tag2"]
----
-```
-
-Outras diretrizes:
-
-- Escreva em português
-- Use títulos hierárquicos (`##`, `###`) - não repita o `title` como `h1`
-- Prefira exemplos curtos e diretos
-- Inclua o "por quê", não apenas o "como"
-- Para agrupar por tema, use subpastas dentro de `src/content/docs/`
-
-**`sidebar.order` é sequencial por diretório**, não global. A ordem entre seções é controlada pelo array `sidebar` em `astro.config.mjs`. Dentro de cada pasta, numere os arquivos a partir de 1.
-
-Para adicionar uma nova seção superior (ex: `nova-categoria/`):
-
-1. Crie o diretório em `src/content/docs/nova-categoria/`
-2. Adicione um arquivo `index.md` como página de entrada
-3. Adicione uma entrada `autogenerate` em `astro.config.mjs`:
-
-   ```javascript
-   {
-     label: "Título da Seção",
-     autogenerate: { directory: "nova-categoria" },
-   }
-   ```
-
-### Exemplos de código (`examples/`)
-
-- Um conceito por arquivo
-- Nomeie o arquivo de forma descritiva (`loop-for.js`, não `exemplo1.js`)
-- Inclua um comentário no topo explicando o que o exemplo demonstra
-
-### Exercícios (`examples/exercises.md`)
-
-- Descreva claramente o objetivo
-- Indique o nível de dificuldade (iniciante / intermediário / avançado)
-- Inclua exemplos de entrada e saída esperada quando aplicável
-
 ## Rodando o site localmente
 
 ```bash
 npm install
-npm run dev   # localhost:4321
+npm run fetch   # clona os labs e monta o conteúdo
+npm run dev     # localhost:4321
+```
+
+Antes de abrir o PR, confirme que o build passa:
+
+```bash
+npm run fetch && npm run build
 ```
 
 ## Dúvidas?

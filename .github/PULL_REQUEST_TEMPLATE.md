@@ -1,25 +1,20 @@
 ## O que este PR faz?
 
 <!-- Descreva de forma clara e objetiva o que foi adicionado, alterado ou corrigido. -->
+<!-- Lembrete: notas dos labs são editadas nos repositórios de conteúdo (ex: ai-labs), não aqui. -->
 
 ## Tipo de mudança
 
-- [ ] Nova anotação (`src/content/docs/`)
-- [ ] Novo exemplo (`examples/`)
-- [ ] Novo exercício (`examples/exercises.md`)
-- [ ] Novo projeto (`examples/projects.md`)
-- [ ] Correção de conteúdo existente
-- [ ] Melhoria no site (Astro/Starlight)
+- [ ] Registro de novo lab (`labs.config.json`)
+- [ ] Melhoria no script de fetch (`scripts/fetch-content.mjs`)
+- [ ] Melhoria no site (Astro/Starlight, estilos, página inicial)
+- [ ] Melhoria no deploy (`.github/workflows/`)
+- [ ] Documentação
 - [ ] Outro: <!-- descreva -->
 
 ## Checklist
 
-- [ ] O conteúdo está em português
-- [ ] Os arquivos estão no diretório correto
-- [ ] Novas anotações têm frontmatter completo (title, description, lastUpdated, sidebar.order, tags)
-- [ ] Exemplos de código funcionam como esperado
-- [ ] Exercícios têm objetivo e dificuldade descritos
-- [ ] O site builda sem erros (`npm run build`)
+- [ ] `npm run fetch && npm run build` passa sem erros
 - [ ] Minha branch está atualizada com `main`
 - [ ] Não há conflitos de merge
 
