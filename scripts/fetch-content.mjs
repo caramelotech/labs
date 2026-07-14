@@ -30,7 +30,10 @@ const { labs } = JSON.parse(
 const sidebar = [];
 
 for (const lab of labs) {
-  const source = localRoot ? path.join(localRoot, lab.slug) : cloneLab(lab);
+  // No modo --local, a pasta irmã tem o nome do repositório (ex: ai-labs),
+  // que pode diferir do slug usado na URL (ex: ai).
+  const repoName = lab.repo.split("/").pop();
+  const source = localRoot ? path.join(localRoot, repoName) : cloneLab(lab);
   if (!fs.existsSync(source)) {
     console.warn(`[${lab.slug}] fonte não encontrada em ${source} - lab ignorado`);
     continue;
