@@ -20,6 +20,34 @@
       "repo": "caramelotech/java-labs",
       "branch": "main",
       "notesDir": "notes"
+    },
+    {
+      "slug": "web-dev",
+      "label": "Web Dev Labs",
+      "repo": "caramelotech/web-dev-labs",
+      "branch": "main",
+      "notesDir": "notes"
+    },
+    {
+      "slug": "ruby",
+      "label": "Ruby Labs",
+      "repo": "caramelotech/ruby-labs",
+      "branch": "main",
+      "notesDir": "notes"
+    },
+    {
+      "slug": "data",
+      "label": "Data Labs",
+      "repo": "caramelotech/data-labs",
+      "branch": "main",
+      "notesDir": "notes"
+    },
+    {
+      "slug": "qa",
+      "label": "QA Labs",
+      "repo": "caramelotech/qa-labs",
+      "branch": "main",
+      "notesDir": "notes"
     }
   ]
 }
