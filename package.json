@@ -1,8 +1,10 @@
 {
-  "name": "caramelo-labs",
+  "name": "labs",
   "version": "1.0.0",
   "type": "module",
   "scripts": {
+    "fetch": "node scripts/fetch-content.mjs",
+    "fetch:local": "node scripts/fetch-content.mjs --local ..",
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview"

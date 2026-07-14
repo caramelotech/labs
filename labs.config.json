@@ -1,0 +1,11 @@
+{
+  "labs": [
+    {
+      "slug": "ai-labs",
+      "label": "AI Labs",
+      "repo": "caramelotech/ai-labs",
+      "branch": "main",
+      "notesDir": "notes"
+    }
+  ]
+}
