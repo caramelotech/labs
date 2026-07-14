@@ -39,13 +39,14 @@ npm run preview      # preview do build gerado
 1. Adicionar entrada em `labs.config.json`:
    ```json
    {
-     "slug": "novo-lab",
+     "slug": "novo",
      "label": "Novo Lab",
-     "repo": "caramelotech/novo-lab",
+     "repo": "caramelotech/novo-labs",
      "branch": "main",
      "notesDir": "notes"
    }
    ```
+   O `slug` define a URL (`/labs/<slug>/`). Convenção: nome do repositório sem o sufixo `-labs` (repo `ai-labs` → slug `ai`).
 2. Opcional: adicionar `LinkCard` do lab em `src/content/docs/index.mdx`
 3. O repositório de conteúdo precisa ter `notes/` e, opcionalmente, `sidebar.json` e o workflow `notify-hub.yml` (ver README)
 

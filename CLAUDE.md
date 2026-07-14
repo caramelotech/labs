@@ -54,13 +54,13 @@ The `base` in `astro.config.mjs` must stay `/labs` to match the Pages sub-path.
 - First line of each note must be the title as `# H1`
 - Numeric filename prefixes control sidebar order inside a folder: `01-`, `02-`, ...
 - Images live next to the notes (e.g. `notes/secao/assets/img.png`) and are referenced with relative paths in Markdown syntax (`![alt](./assets/img.png)`)
-- Internal links between notes must use the full site path (e.g. `/labs/ai-labs/fundamentos/01-introducao-ia/`)
+- Internal links between notes must use the full site path (e.g. `/labs/ai/fundamentos/01-introducao-ia/`)
 - Optional `sidebar.json` at the content repo root declares the lab's sidebar sections (see README)
 
 ## Adding a new lab
 
 1. Content repo: create `notes/` (+ optional `sidebar.json` and the `notify-hub.yml` workflow)
-2. Hub: add an entry to `labs.config.json`
+2. Hub: add an entry to `labs.config.json`. The `slug` sets the URL path (`/labs/<slug>/`); convention is the repo name without the `-labs` suffix (repo `ai-labs` → slug `ai`). In `--local` mode the fetch script resolves the sibling folder by the repo name, not the slug
 3. Optional: add a `LinkCard` for the lab in `src/content/docs/index.mdx`
 
 ## Conventions

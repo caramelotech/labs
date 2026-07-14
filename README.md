@@ -52,13 +52,15 @@ O deploy roda a cada push neste repositório e também via `repository_dispatch`
 
    ```json
    {
-     "slug": "novo-lab",
+     "slug": "novo",
      "label": "Novo Lab",
-     "repo": "caramelotech/novo-lab",
+     "repo": "caramelotech/novo-labs",
      "branch": "main",
      "notesDir": "notes"
    }
    ```
+
+   O `slug` define o caminho na URL (`/labs/<slug>/`). Convenção: nome do repositório sem o sufixo `-labs` (ex: repo `ai-labs` → slug `ai` → `/labs/ai/`).
 
 4. No repositório de conteúdo, adicione o workflow `.github/workflows/notify-hub.yml` para rebuildar o site a cada push de notas (requer o secret `HUB_DISPATCH_TOKEN`, um fine-grained PAT com permissão `contents: read & write` neste repositório hub)
 
