@@ -1,6 +1,6 @@
 # Caramelo Labs
 
-Site central dos **labs da Caramelo Tech** - repositório hub que reúne e publica as notas de todos os labs (AI Labs, Java Labs, Web Dev Labs, etc.) em um único site com Astro + Starlight.
+Site central dos **labs do Caramelo Tech** - repositório hub que reúne e publica as notas de todos os labs (AI Labs, Java Labs, Web Dev Labs, etc.) em um único site com Astro + Starlight.
 
 Acesse: https://caramelotech.com.br/labs
 
@@ -75,7 +75,7 @@ npm run dev            # servidor em localhost:4321
 Para desenvolver usando clones locais dos labs (irmãos desta pasta), use:
 
 ```bash
-npm run fetch:local    # copia de ../<slug> em vez de clonar
+npm run fetch:local    # copia de ../<nome-do-repo> em vez de clonar
 ```
 
 O conteúdo buscado (`src/content/docs/<lab>/`, `labs-sidebar.generated.json`, `.labs-cache/`) é ignorado pelo git - apenas `index.mdx` e `404.md` são versionados.
@@ -88,9 +88,9 @@ O conteúdo buscado (`src/content/docs/<lab>/`, `labs-sidebar.generated.json`, `
 - Imagens ficam junto das notas (ex: `notes/secao/assets/img.png`) e são referenciadas com caminho relativo: `![alt](./assets/img.png)`
 - Frontmatter continua sendo aceito, se a nota precisar de campos extras (ex: `description`, `tags`)
 
-## Sobre a Caramelo Tech
+## Sobre o Caramelo Tech
 
-A Caramelo Tech é uma iniciativa focada em aprendizado prático de tecnologia.
+O Caramelo Tech é uma iniciativa focada em aprendizado prático de tecnologia.
 
 Aqui você não apenas lê - você constrói.
 

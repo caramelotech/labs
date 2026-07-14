@@ -2,7 +2,7 @@
 
 ## Sobre o Projeto
 
-**Caramelo Labs** é o repositório **hub** dos labs da Caramelo Tech. Ele contém a estrutura do site (Astro + Starlight) e busca, em tempo de build, as notas dos repositórios de conteúdo (ai-labs, java-labs, web-dev-labs, etc.). O site é publicado via GitHub Pages em `https://caramelotech.com.br/labs`.
+**Caramelo Labs** é o repositório **hub** dos labs do Caramelo Tech. Ele contém a estrutura do site (Astro + Starlight) e busca, em tempo de build, as notas dos repositórios de conteúdo (ai-labs, java-labs, web-dev-labs, etc.). O site é publicado via GitHub Pages em `https://caramelotech.com.br/labs`.
 
 Os repositórios de conteúdo têm apenas Markdown puro em `notes/` - sem frontmatter, sem dependências. Este repositório injeta o frontmatter exigido pelo Starlight durante o fetch.
 
