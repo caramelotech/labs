@@ -6,6 +6,20 @@
       "repo": "caramelotech/ai-labs",
       "branch": "main",
       "notesDir": "notes"
+    },
+    {
+      "slug": "clojure",
+      "label": "Clojure Labs",
+      "repo": "caramelotech/clojure-labs",
+      "branch": "main",
+      "notesDir": "notes"
+    },
+    {
+      "slug": "java",
+      "label": "Java Labs",
+      "repo": "caramelotech/java-labs",
+      "branch": "main",
+      "notesDir": "notes"
     }
   ]
 }
