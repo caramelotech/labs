@@ -1,0 +1,32 @@
+---
+// Override do Sidebar do Starlight: cada lab é um grupo de primeiro nível na
+// sidebar gerada. Aqui mostramos apenas o grupo do lab da página atual, com um
+// link de volta para a página inicial do hub. Fora de um lab (ex: 404), a
+// sidebar completa é mantida.
+import Default from "@astrojs/starlight/components/Sidebar.astro";
+
+function hasCurrent(entries) {
+  return entries.some((entry) =>
+    entry.type === "link" ? entry.isCurrent : hasCurrent(entry.entries),
+  );
+}
+
+const { sidebar } = Astro.locals.starlightRoute;
+const currentLab = sidebar.find(
+  (entry) => entry.type === "group" && hasCurrent(entry.entries),
+);
+
+if (currentLab) {
+  const homeLink = {
+    type: "link",
+    label: "← Todos os labs",
+    href: import.meta.env.BASE_URL,
+    isCurrent: false,
+    badge: undefined,
+    attrs: {},
+  };
+  Astro.locals.starlightRoute.sidebar = [homeLink, ...currentLab.entries];
+}
+---
+
+<Default><slot /></Default>

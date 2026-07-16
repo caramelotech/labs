@@ -17,6 +17,9 @@ export default defineConfig({
     starlight({
       title: "Caramelo Tech",
       customCss: ["./src/styles/custom.css"],
+      components: {
+        Sidebar: "./src/components/Sidebar.astro",
+      },
       social: [
         {
           icon: "github",

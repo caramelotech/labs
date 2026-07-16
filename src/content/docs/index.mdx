@@ -1,25 +1,63 @@
 ---
-title: 🧪 Caramelo Labs
+title: Caramelo Labs 🧪
 description: Espaço de aprendizado prático do Caramelo Tech.
 template: splash
 hero:
   tagline: Aprenda fazendo. Explore conceitos, exemplos e projetos práticos de programação.
-  actions:
-    - text: Começar agora
-      link: /labs/ai/
-      icon: right-arrow
-      variant: primary
-    - text: Ver no GitHub
-      link: https://github.com/caramelotech/labs
-      icon: github
-      variant: minimal
 sidebar:
   hidden: true
 ---
 
-import { Card, CardGrid, LinkCard } from "@astrojs/starlight/components";
+import { Card, CardGrid, LinkButton } from "@astrojs/starlight/components";
 
 <CardGrid stagger>
+  <Card title="🤖 AI">
+    Inteligência artificial e prompt engineering.
+    <LinkButton href="/labs/ai/" icon="right-arrow" variant="minimal">
+      Acessar o lab
+    </LinkButton>
+  </Card>
+  <Card title="🧩 Clojure">
+    Programação funcional com Clojure.
+    <LinkButton href="/labs/clojure/" icon="right-arrow" variant="minimal">
+      Acessar o lab
+    </LinkButton>
+  </Card>
+  <Card title="☕ Java">
+    Desenvolvimento com Java e Spring.
+    <LinkButton href="/labs/java/" icon="right-arrow" variant="minimal">
+      Acessar o lab
+    </LinkButton>
+  </Card>
+  <Card title="🌐 Web Dev">
+    HTML, CSS, JavaScript e desenvolvimento web.
+    <LinkButton href="/labs/web-dev/" icon="right-arrow" variant="minimal">
+      Acessar o lab
+    </LinkButton>
+  </Card>
+  <Card title="💎 Ruby">
+    Desenvolvimento com Ruby e Rails.
+    <LinkButton href="/labs/ruby/" icon="right-arrow" variant="minimal">
+      Acessar o lab
+    </LinkButton>
+  </Card>
+  <Card title="📊 Data">
+    Ciência de dados, análise e engenharia de dados.
+    <LinkButton href="/labs/data/" icon="right-arrow" variant="minimal">
+      Acessar o lab
+    </LinkButton>
+  </Card>
+  <Card title="✅ QA">
+    Qualidade de software e testes.
+    <LinkButton href="/labs/qa/" icon="right-arrow" variant="minimal">
+      Acessar o lab
+    </LinkButton>
+  </Card>
+</CardGrid>
+
+### 📚 O que você encontra em cada lab
+
+<CardGrid>
   <Card title="Notas" icon="open-book">
     Conceitos explicados de forma clara e progressiva, do básico ao avançado.
   </Card>
@@ -27,54 +65,9 @@ import { Card, CardGrid, LinkCard } from "@astrojs/starlight/components";
     Código funcional e comentado para ver os conceitos na prática.
   </Card>
   <Card title="Exercícios" icon="pencil">
-    Desafios para consolidar o aprendizado com a mão na massa. Disponíveis em
-    `examples/exercises.md`.
+    Desafios para consolidar o aprendizado com a mão na massa.
   </Card>
   <Card title="Projetos" icon="star">
-    Projetos completos para aplicar tudo que foi aprendido. Disponíveis em
-    `examples/projects.md`.
+    Projetos completos para aplicar tudo que foi aprendido.
   </Card>
-</CardGrid>
-
-### 🧪 Caramelo Labs
-
-Aqui, você pode encontrar uma variedade de recursos para ajudá-lo em sua jornada tecnológica.
-Confira nossos labs - ótimas opções para ajudá-lo a melhorar suas habilidades.
-
-<CardGrid>
-  <LinkCard
-    title="Data Labs"
-    href="/labs/data/"
-    description="Ciência de dados, análise e engenharia de dados"
-  />
-  <LinkCard
-    title="QA Labs"
-    href="/labs/qa/"
-    description="Qualidade de software e testes"
-  />
-  <LinkCard
-    title="Ruby Labs"
-    href="/labs/ruby/"
-    description="Desenvolvimento com Ruby e Rails"
-  />
-  <LinkCard
-    title="Clojure Labs"
-    href="/labs/clojure/"
-    description="Programação funcional com Clojure"
-  />
-  <LinkCard
-    title="Web Dev Labs"
-    href="/labs/web-dev/"
-    description="HTML, CSS, JavaScript e desenvolvimento web"
-  />
-  <LinkCard
-    title="Java Labs"
-    href="/labs/java/"
-    description="Desenvolvimento com Java e Spring"
-  />
-  <LinkCard
-    title="AI Labs"
-    href="/labs/ai/"
-    description="Inteligência artificial e prompt engineering"
-  />
 </CardGrid>
