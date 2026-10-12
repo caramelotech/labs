@@ -12,6 +12,11 @@ dist/
 .env.*
 !.env.example
 
+# Logs
+npm-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
 # OS
 .DS_Store
 Thumbs.db
@@ -23,8 +28,12 @@ Thumbs.db
 *.swo
 
 # Claude & AI
-.claude
+.claude/
+.codex/
 bash.exe.stackdump
+
+# Personal
+ref/
 
 # Conteúdo dos labs (buscado no build por scripts/fetch-content.mjs)
 /src/content/docs/*
