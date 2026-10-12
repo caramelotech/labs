@@ -11,16 +11,16 @@ Este diretório reúne exemplos genéricos usados pelo hub do Caramelo Labs.
 
 ## Prática guiada
 
-As sugestões de exercícios e projetos de cada trilha ficam nos repositórios dos labs, dentro de 
-otes/pratica/, para que também apareçam no site publicado.
+As sugestões de exercícios e projetos de cada trilha ficam nos repositórios dos labs, dentro de
+`notes/pratica/`, para que também apareçam no site publicado.
 
 ## hello-world
 
 O exemplo mais simples possível: exibir uma mensagem na tela.
 
-`	ext
+```text
 imprimir("Olá, Caramelo Tech!")
-`
+```
 
 Variações para praticar:
 
